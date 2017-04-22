@@ -1,0 +1,11 @@
+<resources>
+    <string name="title_activity_list_citizens">List Patients</string>
+
+    <string name="menu_entry_patient">Patients</string>
+
+    <string name="patient_id">Remote ID</string>
+    <string name="patient_given_name">Given Name</string>
+    <string name="patient_birthday">Birthday</string>
+    <string name="patient_address">Address</string>
+
+</resources>

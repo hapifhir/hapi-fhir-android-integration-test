@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "ca.uhn.fhir.android.test"
@@ -20,12 +21,29 @@ android {
     lintOptions {
         warning 'InvalidPackage'
     }
+
+    sourceSets {
+        main {
+            //You're a wizard Harry -> https://media.giphy.com/media/9Aiz0PojogZc4/giphy.gif
+            res.srcDirs = ['src/main/res',
+                           'src/main/res-main',
+                           'src/main/res-patient',
+                           'src/main/res-observation'
+            ]
+        }
+
+        unitTest {
+            res.srcDirs = ['src/main/res',
+                           'src/main/res-main',
+                           'src/main/res-patient',
+                           'src/main/res-observation'
+            ]
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    testCompile "org.robolectric:robolectric:3.1.4"
 
     compile "ca.uhn.hapi.fhir:hapi-fhir-android:2.2:dstu2@jar"
     compile("commons-validator:commons-validator:1.5.1") {
@@ -33,6 +51,8 @@ dependencies {
         exclude group: 'commons-collections'
         exclude group: 'commons-digester'
     }
+
+
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'commons-io:commons-io:2.4@jar'
     compile 'org.slf4j:slf4j-api:1.7.10@jar'
@@ -41,4 +61,8 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.3.2'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.android.support:design:24.2.1'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.robolectric:robolectric:3.1.4'
 }
