@@ -17,7 +17,7 @@ public class PatientFhirHelper {
         ArrayList<Patient> fetchedPatients = new ArrayList<>();
 
         List<ca.uhn.fhir.model.dstu2.resource.Bundle.Entry> remotePatientEntries
-                = FhirNetworkHelper.fetchListOfEntries(mUrl, Patient.class);
+                = FhirNetworkHelper.fetchListOfFhirObjects(mUrl, Patient.class);
 
         for (ca.uhn.fhir.model.dstu2.resource.Bundle.Entry remoteEntry : remotePatientEntries) {
             fetchedPatients.add((Patient) remoteEntry.getResource());

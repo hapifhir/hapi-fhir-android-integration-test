@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.model.dstu2.resource.BaseResource;
 import ca.uhn.fhir.model.dstu2.resource.Bundle;
+import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.client.IGenericClient;
 import ca.uhn.fhir.rest.server.exceptions.BaseServerResponseException;
 
@@ -28,11 +30,13 @@ public class FhirNetworkHelper {
             return mGenericClient;
         } else {
             FhirContext ctx = FhirContext.forDstu2();
-            return ctx.newRestfulGenericClient(url);
+            mGenericClient = ctx.newRestfulGenericClient(url);
+            mUrl = url;
+            return mGenericClient;
         }
     }
 
-    public static List<Bundle.Entry> fetchListOfEntries(String url, Class<? extends IBaseResource> clazz) {
+    public static List<Bundle.Entry> fetchListOfFhirObjects(String url, Class<? extends IBaseResource> clazz) {
 
         List<ca.uhn.fhir.model.dstu2.resource.Bundle.Entry> returnEntries = new ArrayList<>();
 
@@ -55,7 +59,7 @@ public class FhirNetworkHelper {
 
     }
 
-    public static IBaseResource downloadSingleResource(String url, Class<? extends IBaseResource> clazz, String remoteKey) {
+    public static IBaseResource downloadSingleResource(Class<? extends IBaseResource> clazz, String remoteKey, String url) {
 
         IBaseResource remoteObs = null;
 
@@ -74,4 +78,59 @@ public class FhirNetworkHelper {
 
         return remoteObs;
     }
+
+    public static <U extends BaseResource> MethodOutcome uploadFhirObject(U curLocalFhirType, String url) {
+
+        MethodOutcome returnedOutcome = null;
+
+        if ((curLocalFhirType != null) && (url != null)) {
+
+            try {
+                if (curLocalFhirType.getId().getIdPart() != null) {
+                    Log.d(TAG, "Stored remote fhir id :: " + curLocalFhirType.getId().getIdPart()
+                            + "\n will push with existing ID, update()");
+                    returnedOutcome = getClient(url).update().resource(curLocalFhirType).withId(curLocalFhirType.getId().toVersionless()).execute();
+                } else {
+                    Log.d(TAG, "No stored remote fhir id, create() will be called.");
+                    returnedOutcome = getClient(url).create().resource(curLocalFhirType).execute();
+                }
+            } catch (BaseServerResponseException bse) {
+                Log.e(TAG, "uploadFhirObject, exception uploading object to FHIR server :: " + bse.getMessage());
+            }
+
+        } else {
+            Log.e(TAG, "uploadFhirObject, cannot work with null input values...");
+        }
+
+        return returnedOutcome;
+    }
+
+    public static <U extends BaseResource> void deleteFhirObject(U curLocalFhirType, String url) {
+
+        if ((curLocalFhirType != null) && (url != null)) {
+
+            try {
+                if (curLocalFhirType.getId() != null) {
+                    Log.d(TAG, "Stored remote fhir id :: " + curLocalFhirType.getId().getIdPart()
+                            + "\n will delete with existing ID, deleteFhirObject()");
+                    getClient(url).delete().resource(curLocalFhirType).execute();
+                } else {
+                    Log.d(TAG, "No stored remote fhir id, cannot delete...");
+                }
+            } catch (BaseServerResponseException bse) {
+                Log.e(TAG, "deleteFhirObject, exception deleting object from FHIR server :: " + bse.getMessage());
+            }
+
+        } else {
+            Log.e(TAG, "deleteFhirObject, cannot work with null input values...");
+        }
+    }
 }
+
+
+
+
+
+
+
+
