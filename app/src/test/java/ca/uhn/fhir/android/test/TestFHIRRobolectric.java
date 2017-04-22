@@ -9,6 +9,7 @@ import org.robolectric.annotation.Config;
 import java.util.List;
 import java.util.UUID;
 
+import ca.uhn.fhir.android.data.network.PatientFhirHelper;
 import ca.uhn.fhir.model.api.Bundle;
 import ca.uhn.fhir.model.dstu2.composite.ResourceReferenceDt;
 import ca.uhn.fhir.model.dstu2.resource.Observation;
