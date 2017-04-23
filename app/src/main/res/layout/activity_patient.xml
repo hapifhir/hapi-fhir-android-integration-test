@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.uhn.fhir.android.ui.PatientActivity.PatientActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/patient_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/progress_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ProgressBar
+            android:id="@+id/progress_spinner"
+            android:layout_width="@dimen/progress_bar_side"
+            android:layout_height="@dimen/progress_bar_side"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            style="@style/heading_h1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progress_spinner"
+            android:layout_centerHorizontal="true"
+            android:text="@string/progress_bar_loading" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
