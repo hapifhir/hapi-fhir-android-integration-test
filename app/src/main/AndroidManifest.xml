@@ -14,11 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="ca.uhn.fhir.android.ListCitizensActivity"
-            android:label="@string/title_activity_list_citizens"
-            android:launchMode="standard"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
             android:name="ca.uhn.fhir.android.ui.FhirTestActivity"
             android:label="@string/title_activity_fhir_test"
             android:theme="@style/AppTheme.NoActionBar">
