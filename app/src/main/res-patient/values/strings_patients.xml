@@ -19,4 +19,7 @@
     <string name="patient_address">Address</string>
     <string name="patient_address_none_set">No Address Set</string>
 
+    <string name="patient_dialog_title">Pretty Print for Patient: %s</string>
+    <string name="patient_dialog_dismiss">Done</string>
+
 </resources>

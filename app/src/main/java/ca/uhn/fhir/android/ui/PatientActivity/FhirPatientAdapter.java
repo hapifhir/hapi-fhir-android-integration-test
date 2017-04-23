@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import ca.uhn.fhir.android.data.network.PatientFhirHelper;
 import ca.uhn.fhir.android.test.R;
 import ca.uhn.fhir.model.dstu2.resource.Patient;
 
@@ -33,7 +34,7 @@ public class FhirPatientAdapter extends RecyclerView.Adapter<PatientViewHolder> 
 
     @Override
     public void onBindViewHolder(PatientViewHolder holder, int position) {
-        Patient patientAtPosition = mPatients.get(position);
+        final Patient patientAtPosition = mPatients.get(position);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat(holder.mAddressField.getContext().getString(R.string.birthday_simple_format));
 
@@ -50,6 +51,15 @@ public class FhirPatientAdapter extends RecyclerView.Adapter<PatientViewHolder> 
         holder.mBirthdayField.setText(patientBirthday);
         holder.mAddressField.setText(patientAddress);
 
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PatientDetailFragment dialog = new PatientDetailFragment(v.getContext(),
+                        PatientFhirHelper.patientToPrettyPrint(patientAtPosition),
+                        patientAtPosition.getId().getIdPart());
+                dialog.show();
+            }
+        });
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ca.uhn.fhir.android.ui.PatientActivity;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -12,6 +13,9 @@ import ca.uhn.fhir.android.test.R;
  * Created by mark on 2017-04-21.
  */
 public class PatientViewHolder extends RecyclerView.ViewHolder {
+
+    @BindView(R.id.card_view)
+    public CardView mCardView;
 
     @BindView(R.id.citizen_index)
     public TextView mPatientIndex;

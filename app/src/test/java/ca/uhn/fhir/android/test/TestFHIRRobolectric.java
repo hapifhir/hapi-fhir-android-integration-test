@@ -74,6 +74,7 @@ public class TestFHIRRobolectric {
         return createdObservation;
     }
 
+    //TODO nuke this
     private Observation getObservation(IdDt id, IGenericClient client) {
         Bundle bundle = client.search().forResource(Observation.class)
                 .where(Observation.IDENTIFIER.exactly().identifier(id.getIdPart())).include(Observation.INCLUDE_PATIENT)

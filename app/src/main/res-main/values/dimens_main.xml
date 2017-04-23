@@ -39,4 +39,6 @@
     <!-- Card View -->
     <dimen name="card_view_corner_radius">8dp</dimen>
 
+    <dimen name="minimum_dialog_height">256dp</dimen>
+
 </resources>

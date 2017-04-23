@@ -1,20 +1,7 @@
 package ca.uhn.fhir.android;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.view.View;
-import android.widget.TextView;
-
-import java.util.List;
-
-import ca.uhn.fhir.android.data.network.PatientFhirHelper;
-import ca.uhn.fhir.android.test.R;
-import ca.uhn.fhir.model.dstu2.resource.Patient;
 
 public class ListCitizensActivity extends AppCompatActivity {
 

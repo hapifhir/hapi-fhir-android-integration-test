@@ -44,6 +44,7 @@ public class FhirNetworkHelper {
             ca.uhn.fhir.model.dstu2.resource.Bundle returnBundle = getClient(url)
                     .search()
                     .forResource(clazz)
+                    .prettyPrint()
                     .returnBundle(Bundle.class)
                     .execute();
 
@@ -61,13 +62,14 @@ public class FhirNetworkHelper {
 
     public static IBaseResource downloadSingleResource(Class<? extends IBaseResource> clazz, String remoteKey, String url) {
 
-        IBaseResource remoteObs = null;
+        IBaseResource remoteObj = null;
 
         try {
             if (remoteKey != null) {
-                remoteObs = getClient(url).read()
+                remoteObj = getClient(url).read()
                         .resource(clazz)
                         .withId(remoteKey)
+                        .prettyPrint()
                         .execute();
             } else {
                 throw new IllegalStateException("Can't syncReadingsWithinRange a null local FhirDataType");
@@ -76,7 +78,7 @@ public class FhirNetworkHelper {
             Log.e(TAG, "downloadSingleResource, exception syncing patient to FHIR server :: " + bse.getMessage());
         }
 
-        return remoteObs;
+        return remoteObj;
     }
 
     public static <U extends BaseResource> MethodOutcome uploadFhirObject(U curLocalFhirType, String url) {
