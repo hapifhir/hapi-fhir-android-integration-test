@@ -1,0 +1,25 @@
+<resources>
+    <string name="title_activity_list_citizens">List Patients</string>
+
+    <string name="menu_entry_patient">Patients</string>
+
+    <string name="patient_id">Remote ID</string>
+    <string name="patient_id_none_set">No Remote ID Set</string>
+
+    <string name="patient_gender">Gender</string>
+    <string name="patient_gender_none_set">No Gender Set</string>
+
+    <string name="patient_given_name">Given Name</string>
+    <string name="patient_given_name_none_set">No Given Name Set</string>
+
+    <string name="patient_birthday">Birthday</string>
+    <string name="patient_birthday_none_set">No Birthday Set</string>
+    <string name="birthday_simple_format">yyyy/MM/dd</string>
+
+    <string name="patient_address">Address</string>
+    <string name="patient_address_none_set">No Address Set</string>
+
+    <string name="patient_dialog_title">Pretty Print for Patient: %s</string>
+    <string name="patient_dialog_dismiss">Done</string>
+
+</resources>

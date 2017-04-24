@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_size_medium"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="ca.uhn.fhir.android.ui.FhirTestActivity"
+    tools:showIn="@layout/app_bar_fhir_test">
+
+    <TextView
+        style="@style/heading_h2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/server_select_spinner"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/sever_select_prompt" />
+
+    <Spinner
+        android:id="@+id/server_select_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/margin_size_small"
+        android:layout_marginTop="@dimen/margin_size_small"
+        android:gravity="center"
+        android:minHeight="@dimen/margin_size_large" />
+
+    <TextView
+        android:id="@+id/server_address"
+        style="@style/heading_h3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/server_select_spinner"
+        android:gravity="center"
+        android:text="-"
+        android:textAllCaps="false" />
+
+</RelativeLayout>

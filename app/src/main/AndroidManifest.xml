@@ -14,15 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:launchMode="standard"
-            android:name="ca.uhn.fhir.android.ListCitizensActivity"
-            android:label="@string/title_activity_list_citizens"
+            android:name="ca.uhn.fhir.android.ui.FhirTestActivity"
+            android:label="@string/title_activity_fhir_test"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="ca.uhn.fhir.android.ui.PatientActivity.PatientActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="menu_entry_observation">Observations</string>
+    <string name="observation_id">Remote ID</string>
+</resources>
