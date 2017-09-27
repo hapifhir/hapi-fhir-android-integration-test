@@ -9,12 +9,17 @@ import org.robolectric.annotation.Config;
 import java.util.List;
 import java.util.UUID;
 
-import ca.uhn.fhir.model.api.Bundle;
+import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.model.dstu2.composite.ResourceReferenceDt;
+import ca.uhn.fhir.model.dstu2.resource.Bundle;
 import ca.uhn.fhir.model.dstu2.resource.Observation;
 import ca.uhn.fhir.model.dstu2.resource.Patient;
 import ca.uhn.fhir.model.primitive.IdDt;
-import ca.uhn.fhir.rest.client.IGenericClient;
+import ca.uhn.fhir.rest.client.api.IGenericClient;
+import ca.uhn.fhir.rest.server.exceptions.ResourceGoneException;
+import ca.uhn.fhir.util.BundleUtil;
+
+import static org.junit.Assert.fail;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 23)
@@ -48,15 +53,22 @@ public class TestFHIRRobolectric {
         gcm.getClient().delete().resourceById(o.getId()).execute();
         gcm.getClient().delete().resourceById(p.getId()).execute();
         //Test the they are deleted.
-        Assert.assertNull(getObservation(o.getId(), gcm.getClient()));
+        try {
+            gcm.getClient().read().resource(Observation.class).withId(o.getId()).execute();
+            fail();
+        } catch (ResourceGoneException e) {
+            // good
+        }
     }
 
     private Observation getObservation(IdDt id, IGenericClient client) {
         Bundle bundle = client.search().forResource(Observation.class)
                 .where(Observation.IDENTIFIER.exactly().identifier(id.getIdPart())).include(Observation.INCLUDE_PATIENT)
                 .prettyPrint()
+                .returnBundle(Bundle.class)
                 .execute();
-        List<Observation> observations = bundle.getResources(Observation.class);
+        FhirContext ctx = FhirContext.forDstu2();
+        List<Observation> observations = BundleUtil.toListOfResourcesOfType(ctx, bundle, Observation.class);
         if (observations.isEmpty()) {
             return null;
         } else {
