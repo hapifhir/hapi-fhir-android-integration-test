@@ -7,7 +7,7 @@ configurations {
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '24.0.0'
 
     defaultConfig {
         applicationId "ca.uhn.fhir.android.test"
