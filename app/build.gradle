@@ -5,10 +5,9 @@ configurations {
   all*.exclude group: 'org.apache.httpcomponents'
 }
 
-
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "ca.uhn.fhir.android.test"
@@ -33,9 +32,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile "org.robolectric:robolectric:3.1.4"
 
-    compile("ca.uhn.hapi.fhir:hapi-fhir-base:3.1.0-SNAPSHOT") {
-	     exclude group: 'org.codehaus.woodstox', module: 'woodstox-core-asl'
-	 }
     compile "ca.uhn.hapi.fhir:hapi-fhir-android:3.1.0-SNAPSHOT"
     compile "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu2:3.1.0-SNAPSHOT"
     compile("commons-validator:commons-validator:1.5.1") {
