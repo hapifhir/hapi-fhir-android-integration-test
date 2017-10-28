@@ -33,7 +33,7 @@ dependencies {
     testCompile "org.robolectric:robolectric:3.1.4"
 
     compile "ca.uhn.hapi.fhir:hapi-fhir-android:3.1.0-SNAPSHOT"
-    compile "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu2:3.1.0-SNAPSHOT"
+    compile "ca.uhn.hapi.fhir:hapi-fhir-structures-r4:3.1.0-SNAPSHOT"
     compile("commons-validator:commons-validator:1.5.1") {
         exclude group: 'commons-logging'
         exclude group: 'commons-collections'

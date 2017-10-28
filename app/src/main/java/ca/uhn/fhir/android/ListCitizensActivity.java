@@ -10,11 +10,12 @@ import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
+import org.hl7.fhir.r4.model.Patient;
+
 import java.util.List;
 
 import ca.uhn.fhir.android.test.PatientFhirHelper;
 import ca.uhn.fhir.android.test.R;
-import ca.uhn.fhir.model.dstu2.resource.Patient;
 
 public class ListCitizensActivity extends AppCompatActivity {
 

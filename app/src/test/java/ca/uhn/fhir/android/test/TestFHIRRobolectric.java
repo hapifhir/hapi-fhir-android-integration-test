@@ -1,5 +1,10 @@
 package ca.uhn.fhir.android.test;
 
+import org.hl7.fhir.r4.model.Bundle;
+import org.hl7.fhir.r4.model.IdType;
+import org.hl7.fhir.r4.model.Observation;
+import org.hl7.fhir.r4.model.Patient;
+import org.hl7.fhir.r4.model.Reference;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,10 +15,6 @@ import java.util.List;
 import java.util.UUID;
 
 import ca.uhn.fhir.context.FhirContext;
-import ca.uhn.fhir.model.dstu2.composite.ResourceReferenceDt;
-import ca.uhn.fhir.model.dstu2.resource.Bundle;
-import ca.uhn.fhir.model.dstu2.resource.Observation;
-import ca.uhn.fhir.model.dstu2.resource.Patient;
 import ca.uhn.fhir.model.primitive.IdDt;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.rest.server.exceptions.ResourceGoneException;
@@ -32,26 +33,26 @@ public class TestFHIRRobolectric {
         Patient p = new Patient();
         p.setId("Patient/"+UUID.randomUUID().toString());
         p.setActive(true);
-        p.addName().addFamily("HapiFhirAndroidTest").addGiven("Patient");
+        p.addName().setFamily("HapiFhirAndroidTest").addGiven("Patient");
         Observation o = new Observation();
         o.setId("Observation/"+UUID.randomUUID().toString());
-        o.addIdentifier().setValue(o.getId().getIdPart());
-        o.setComments("HapiFhirAndroidTestObservation");
-        o.setSubject(new ResourceReferenceDt(p));
+        o.addIdentifier().setValue(o.getIdElement().getIdPart());
+        o.setComment("HapiFhirAndroidTestObservation");
+        o.setSubject(new Reference(p));
         //Test transaction create
         gcm.getClient().update().resource(p).execute();
         gcm.getClient().update().resource(o).execute();
         //Test search
-        Observation obs = getObservation(o.getId(), gcm.getClient());
+        Observation obs = getObservation(o.getIdElement(), gcm.getClient());
         Assert.assertNotNull(obs);
         Assert.assertNotNull(obs.getSubject().getResource());
         Patient patient = ((Patient)obs.getSubject().getResource());
-        Assert.assertEquals(p.getId().getIdPart(), patient.getId().getIdPart());
-        Assert.assertEquals(o.getComments(), obs.getComments());
-        Assert.assertEquals(o.getId().getIdPart(), obs.getId().getIdPart());
+        Assert.assertEquals(p.getIdElement().getIdPart(), patient.getIdElement().getIdPart());
+        Assert.assertEquals(o.getComment(), obs.getComment());
+        Assert.assertEquals(o.getIdElement().getIdPart(), obs.getIdElement().getIdPart());
         //Test and use delete
-        gcm.getClient().delete().resourceById(o.getId()).execute();
-        gcm.getClient().delete().resourceById(p.getId()).execute();
+        gcm.getClient().delete().resourceById(o.getIdElement()).execute();
+        gcm.getClient().delete().resourceById(p.getIdElement()).execute();
         //Test the they are deleted.
         try {
             gcm.getClient().read().resource(Observation.class).withId(o.getId()).execute();
@@ -61,7 +62,7 @@ public class TestFHIRRobolectric {
         }
     }
 
-    private Observation getObservation(IdDt id, IGenericClient client) {
+    private Observation getObservation(IdType id, IGenericClient client) {
         Bundle bundle = client.search().forResource(Observation.class)
                 .where(Observation.IDENTIFIER.exactly().identifier(id.getIdPart())).include(Observation.INCLUDE_PATIENT)
                 .prettyPrint()
