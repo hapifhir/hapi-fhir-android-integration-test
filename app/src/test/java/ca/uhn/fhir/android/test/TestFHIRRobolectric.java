@@ -27,7 +27,7 @@ import static org.junit.Assert.fail;
 public class TestFHIRRobolectric {
 
     @Test
-    public void testHapiFHIRInitializationDSTU2() {
+    public void testHapiFHIRInitializationR4() {
         PatientFhirHelper gcm = new PatientFhirHelper();
 
         Patient p = new Patient();
@@ -68,7 +68,7 @@ public class TestFHIRRobolectric {
                 .prettyPrint()
                 .returnBundle(Bundle.class)
                 .execute();
-        FhirContext ctx = FhirContext.forDstu2();
+        FhirContext ctx = FhirContext.forR4();
         List<Observation> observations = BundleUtil.toListOfResourcesOfType(ctx, bundle, Observation.class);
         if (observations.isEmpty()) {
             return null;

@@ -16,8 +16,8 @@ public class PatientFhirHelper {
     private FhirContext ctx;
 
     public PatientFhirHelper() {
-        ctx = FhirContext.forDstu2();
-        client = ctx.newRestfulGenericClient("http://fhirtest.uhn.ca/baseDstu2");
+        ctx = FhirContext.forR4();
+        client = ctx.newRestfulGenericClient("http://fhirtest.uhn.ca/baseR4");
     }
 
     public List<Patient> getPatients() {
