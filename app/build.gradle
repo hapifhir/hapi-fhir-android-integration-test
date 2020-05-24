@@ -9,6 +9,11 @@ android {
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
 
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
     defaultConfig {
         applicationId "ca.uhn.fhir.android.test"
         minSdkVersion versions.minSdk

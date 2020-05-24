@@ -1,11 +1,11 @@
 ext {
     versions = [
             // Build tools and SDK
-            buildTools      : '26.0.2',
-            compileSdk      : 24,
+            buildTools      : '29.0.3',
+            compileSdk      : 29,
             gradlePlugin    : '3.6.1',
             minSdk          : 19,
-            targetSdk       : 23,
+            targetSdk       : 29,
 
             // Android libraries
             appcompat       : '24.2.1',
