@@ -11,7 +11,7 @@ ext {
             appcompat       : '24.2.1',
 
             // Third-party libraries
-            fhir            : '3.1.0-SNAPSHOT',
+            fhir            : '3.8.0',
             gson            : '2.4',
             okHttp          : '3.4.2',
 
