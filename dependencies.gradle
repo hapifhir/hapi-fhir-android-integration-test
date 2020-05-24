@@ -4,11 +4,13 @@ ext {
             buildTools      : '29.0.3',
             compileSdk      : 29,
             gradlePlugin    : '3.6.1',
+            jetpack         : '1.1.0',
             minSdk          : 19,
             targetSdk       : 29,
 
             // Android libraries
             appcompat       : '24.2.1',
+            material        : '1.1.0',
 
             // Third-party libraries
             fhir            : '3.8.0',
@@ -23,11 +25,12 @@ ext {
     ]
 
     libraries = [
-            appcompat       : "com.android.support:appcompat-v7:${versions.appcompat}",
+            appcompat       : "androidx.appcompat:appcompat:${versions.jetpack}",
             design          : "com.android.support:design:${versions.appcompat}",
             fhirAndroid     : "ca.uhn.hapi.fhir:hapi-fhir-android:${versions.fhir}",
             fhirStructures  : "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu2:${versions.fhir}",
             gson            : "com.google.code.gson:gson:${versions.gson}",
+            material        : "com.google.android.material:material:${versions.material}",
             okHttp          : "com.squareup.okhttp3:okhttp:${versions.okHttp}",
     ]
 
