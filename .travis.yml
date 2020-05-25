@@ -16,3 +16,8 @@ android:
 
     licenses:
         - 'android-sdk-license-.+'
+
+cache:
+  directories:
+    - "${HOME}/.gradle"
+    - "${HOME}/.m2"
