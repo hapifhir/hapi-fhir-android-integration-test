@@ -25,12 +25,12 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', 'API_URL', '"http://fhirtest.uhn.ca/"'
+            buildConfigField 'String', 'API_URL', '"https://hapi.fhir.org/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
-            buildConfigField 'String', 'API_URL', '"http://fhirtest.uhn.ca/"'
+            buildConfigField 'String', 'API_URL', '"https://hapi.fhir.org/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
