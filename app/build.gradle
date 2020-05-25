@@ -18,6 +18,7 @@ android {
         applicationId "ca.uhn.fhir.android.test"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
     }
@@ -45,6 +46,7 @@ dependencies {
     implementation libraries.fhirAndroid
     implementation libraries.fhirStructures
     implementation libraries.gson
+    implementation libraries.multidex
     implementation libraries.okHttp
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 

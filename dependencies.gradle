@@ -11,6 +11,7 @@ ext {
             // Android libraries
             appcompat       : '24.2.1',
             material        : '1.1.0',
+            multidex        : '2.0.1',
 
             // Third-party libraries
             fhir            : '3.8.0',
@@ -31,6 +32,7 @@ ext {
             fhirStructures  : "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu2:${versions.fhir}",
             gson            : "com.google.code.gson:gson:${versions.gson}",
             material        : "com.google.android.material:material:${versions.material}",
+            multidex        : "androidx.multidex:multidex:${versions.multidex}",
             okHttp          : "com.squareup.okhttp3:okhttp:${versions.okHttp}",
     ]
 
