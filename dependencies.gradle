@@ -1,0 +1,46 @@
+ext {
+    versions = [
+            // Build tools and SDK
+            buildTools      : '29.0.3',
+            compileSdk      : 29,
+            gradlePlugin    : '3.6.1',
+            jetpack         : '1.1.0',
+            minSdk          : 19,
+            targetSdk       : 29,
+
+            // Android libraries
+            appcompat       : '24.2.1',
+            material        : '1.1.0',
+            multidex        : '2.0.1',
+
+            // Third-party libraries
+            fhir            : '3.8.0',
+            gson            : '2.4',
+            okHttp          : '3.4.2',
+
+            // Instrumented testing libraries
+
+            // Testing libraries
+            junit           : '4.12',
+            roboeletric     : '3.1.4'
+    ]
+
+    libraries = [
+            appcompat       : "androidx.appcompat:appcompat:${versions.jetpack}",
+            design          : "com.android.support:design:${versions.appcompat}",
+            fhirAndroid     : "ca.uhn.hapi.fhir:hapi-fhir-android:${versions.fhir}",
+            fhirStructures  : "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu2:${versions.fhir}",
+            gson            : "com.google.code.gson:gson:${versions.gson}",
+            material        : "com.google.android.material:material:${versions.material}",
+            multidex        : "androidx.multidex:multidex:${versions.multidex}",
+            okHttp          : "com.squareup.okhttp3:okhttp:${versions.okHttp}",
+    ]
+
+    instrumentedTestLibraries = [
+    ]
+
+    testLibraries = [
+            junit      : "junit:junit:${versions.junit}",
+            roboeletric: "org.robolectric:robolectric:${versions.roboeletric}"
+    ]
+}

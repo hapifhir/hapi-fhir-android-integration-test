@@ -11,12 +11,14 @@ import ca.uhn.fhir.util.BundleUtil;
 
 public class PatientFhirHelper {
 
+    private static final String DSTU2_URL = BuildConfig.API_URL + "baseDstu2";
+
     private IGenericClient client;
     private FhirContext ctx;
 
     public PatientFhirHelper() {
         ctx = FhirContext.forDstu2();
-        client = ctx.newRestfulGenericClient("http://fhirtest.uhn.ca/baseDstu2");
+        client = ctx.newRestfulGenericClient(DSTU2_URL);
     }
 
     public List<Patient> getPatients() {
@@ -32,4 +34,5 @@ public class PatientFhirHelper {
     public IGenericClient getClient() {
         return client;
     }
+
 }

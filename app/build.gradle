@@ -6,18 +6,31 @@ configurations {
 }
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '26.0.2'
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 
     defaultConfig {
         applicationId "ca.uhn.fhir.android.test"
-        minSdkVersion 19
-        targetSdkVersion 23
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
+        debug {
+            buildConfigField 'String', 'API_URL', '"https://hapi.fhir.org/"'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
+            buildConfigField 'String', 'API_URL', '"https://hapi.fhir.org/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -28,23 +41,15 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    testCompile "org.robolectric:robolectric:3.1.4"
+    implementation libraries.appcompat
+    implementation libraries.design
+    implementation libraries.fhirAndroid
+    implementation libraries.fhirStructures
+    implementation libraries.gson
+    implementation libraries.multidex
+    implementation libraries.okHttp
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile "ca.uhn.hapi.fhir:hapi-fhir-android:3.1.0-SNAPSHOT"
-    compile "ca.uhn.hapi.fhir:hapi-fhir-structures-dstu2:3.1.0-SNAPSHOT"
-    compile("commons-validator:commons-validator:1.5.1") {
-        exclude group: 'commons-logging'
-        exclude group: 'commons-collections'
-        exclude group: 'commons-digester'
-    }
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'commons-io:commons-io:2.4@jar'
-    compile 'org.slf4j:slf4j-api:1.7.10@jar'
-    compile 'javax.servlet:servlet-api:2.5'
-    compile 'com.squareup.okhttp3:okhttp:3.4.2'
-    compile 'org.apache.commons:commons-lang3:3.3.2'
-    compile 'com.google.code.gson:gson:2.4'
-    compile 'com.android.support:design:24.2.1'
+    testImplementation testLibraries.junit
+    testImplementation testLibraries.roboeletric
 }
